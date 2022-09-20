@@ -18,12 +18,12 @@ document.onkeydown = function(data) {
 
 $(document).on('click', '.submit', function() {
     let cb = CheckIfRequired()
-
     if (cb === true) {
         let object = {}
         let inputs = document.getElementsByClassName('optionInput')
         let selects = document.getElementsByClassName('optionSelect')
-
+        let radiobox = document.getElementsByClassName('form-radio')
+        let checkbox = document.getElementsByClassName('form-checkbox')
         for (const input of inputs) {
             // convert to number if it's a number
             if (input.type == 'number') {
@@ -34,6 +34,24 @@ $(document).on('click', '.submit', function() {
         }
 
         for (const input of selects) object[input.name] = input.value
+
+        for (const iterator of radiobox[0].childNodes) {
+            if (iterator.childNodes.length > 0 && (iterator.childNodes[0].checked)) {
+                object[iterator.childNodes[0].name] = iterator.childNodes[0].value
+                break
+            }
+        }
+
+        for (const iterator of checkbox[0].childNodes) {
+
+            if (iterator.childNodes.length > 0) {
+                if (!object[iterator.childNodes[0].name]) {
+                    object[iterator.childNodes[0].name] = {}
+                }
+                let value = iterator.childNodes[0].value
+                object[iterator.childNodes[0].name][value] = iterator.childNodes[0].checked
+            }
+        }
 
         $.post(`https://${resource_name}/submit`, JSON.stringify({ object }))
         $('.maincon').fadeOut(150, 'swing');
@@ -131,6 +149,26 @@ const renderSelectInput = (item) => {
     }
 };
 
+const renderRadioInput = (item) => {
+    return `<div class="newRadio" data-required="${(item.required)}">
+                <span class="optionDesc">${item.title || capitalizeFirstLetter(item.name)} ${(item.required) ? '*' : ''}</span>
+                ${item.icon ? `<div class="emojiBox"><i class="${item.icon}"></i></div>` : ''}
+                <div class="optionRadio">
+                ${GetRadio(item.name, item.options, item.default)}
+                </div>
+            </div>`;
+};
+
+const renderCheckboxInput = (item) => {
+    return `<div class="newCheckBox" data-required="${(item.required)}">
+                <span class="optionDesc">${item.title || capitalizeFirstLetter(item.name)} ${(item.required) ? '*' : ''}</span>
+                ${item.icon ? `<div class="emojiBox"><i class="${item.icon}"></i></div>` : ''}
+                <div class="optionCheckBox">
+                ${GetCheckBox(item.name, item.options, item.default)}
+                </div>
+            </div>`;
+};
+
 function SetupItems(items) {
     $('.appendablediv').html('')
     for (const item of items) {
@@ -155,15 +193,15 @@ function SetupItems(items) {
             case "number":
                 $('.appendablediv').append(renderNumberInput(item));
                 break;
-            // case "radio":
-            //    $('.appendablediv').append(renderRadioInput(item));
-            //     break;
+            case "radio":
+                $('.appendablediv').append(renderRadioInput(item));
+                break;
             case "select":
                 $('.appendablediv').append(renderSelectInput(item));
                 break;
-            // case "checkbox":
-            //     $('.appendablediv').append(renderCheckboxInput(item));
-            //     break;
+            case "checkbox":
+                $('.appendablediv').append(renderCheckboxInput(item));
+                break;
             default:
                 $('.appendablediv').append(renderTextInput(itme));
         }
@@ -171,9 +209,43 @@ function SetupItems(items) {
 }
 
 function GetSelect(options) {
-    let htmlsorgu = ''
+    let html = ''
     for (const option of options) {
-        htmlsorgu = htmlsorgu + `<option class="${option.disabled ? 'disabled' : ''}" ${option.disabled ? 'disabled' : ''} value="${option.value}">${option.text || option.title}</option>`
+        html = html + `<option class="${option.disabled ? 'disabled' : ''}" ${option.disabled ? 'disabled' : ''} value="${option.value}">${option.text || option.title}</option>`
     }
-    return htmlsorgu
+    return html
+}
+
+function GetRadio(name, options, default_item) {
+    let html = '<div class="form-radio">'
+    for (const option of options) {
+        let id = generateId(20)
+        html = html + `
+        <label><input type="radio" id="${option.text + '-' + id}" name="${name}" value="${option.value}" ${(default_item == option.value) ? "checked" : ""} ${option.disabled ? 'disabled' : ''}>${option.text}</label>         
+        `
+    }
+    html += '</div>'
+    return html
+}
+
+function GetCheckBox(name, options, default_item) {
+    let html = '<div class="form-checkbox">'
+    for (const option of options) {
+        let id = generateId(20)
+        html = html + `
+            <label><input type="checkbox" id="${option.text + '-' + id}" name="${name}" value="${option.value}" ${(default_item == option.value) ? "checked" : ""} ${option.disabled ? 'disabled' : ''}>${option.text}</label>      
+        `
+    }
+    html += '</div>'
+    return html
+}
+
+function dec2hex(dec) {
+    return dec.toString(16).padStart(2, "0")
+}
+
+function generateId(len) {
+    var arr = new Uint8Array((len || 40) / 2)
+    window.crypto.getRandomValues(arr)
+    return Array.from(arr, dec2hex).join('')
 }

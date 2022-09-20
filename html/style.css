@@ -144,3 +144,67 @@ select option {
     font-size: 2vh;
     display: none;
 }
+
+.newRadio {
+    width: 85%;
+    height: fit-content;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    transition: border-bottom 0.2s ease;
+    margin-top: 1vh;
+    margin-bottom: 1.5vh;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vh;
+}
+
+.optionRadio {
+    outline: none;
+    border: none;
+    color: white;
+    background: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6vh;
+    position: relative;
+    padding-bottom: 1vh;
+    display: flex;
+    justify-content: stretch;
+    gap: 1vh;
+}
+
+.newCheckBox {
+    width: 85%;
+    height: fit-content;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    transition: border-bottom 0.2s ease;
+    margin-top: 1vh;
+    margin-bottom: 1.5vh;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vh;
+}
+
+.optionCheckBox {
+    outline: none;
+    border: none;
+    color: white;
+    background: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6vh;
+    position: relative;
+    padding-bottom: 1vh;
+    display: flex;
+    justify-content: stretch;
+    gap: 1vh;
+}
+
+.form-control {
+    display: flex;
+    align-items: center;
+    min-height: 1vh;
+}
