@@ -35,19 +35,23 @@ $(document).on('click', '.submit', function() {
 
         for (const input of selects) object[input.name] = input.value
 
-        for (const iterator of radiobox[0].childNodes) {
-            if (iterator.childNodes.length > 0 && (iterator.childNodes[0].checked)) {
-                object[iterator.childNodes[0].name] = iterator.childNodes[0].value
-                break
+        if (radiobox[0]) {
+            for (const iterator of radiobox[0].childNodes) {
+                if (iterator.childNodes.length > 0 && (iterator.childNodes[0].checked)) {
+                    object[iterator.childNodes[0].name] = iterator.childNodes[0].value
+                    break
+                }
             }
         }
 
-        for (const iterator of checkbox[0].childNodes) {
-            if (iterator.childNodes.length > 0) {
-                let name = iterator.childNodes[0].name
-                let value = iterator.childNodes[0].value
-                if (!object[name]) object[name] = {}
-                object[name][value] = iterator.childNodes[0].checked
+        if (checkbox[0]) {
+            for (const iterator of checkbox[0].childNodes) {
+                if (iterator.childNodes.length > 0) {
+                    let name = iterator.childNodes[0].name
+                    let value = iterator.childNodes[0].value
+                    if (!object[name]) object[name] = {}
+                    object[name][value] = iterator.childNodes[0].checked
+                }
             }
         }
 
@@ -98,7 +102,7 @@ const renderTextInput = (item) => {
             return `<div class="newOption" data-required="${(item.required)}">
                 <span class="optionDesc">${item.title || capitalizeFirstLetter(item.name)} ${(item.required) ? '*' : ''}</span>
                 ${item.icon ? `<div class="emojiBox"><i class="${item.icon}"></i></div>` : ''}
-                <input type="text" placeholder="${item.text || ""}" name="${item.name}" class="optionInput ${item.disabled ? 'disabled' : ''}" ${item.disabled ? 'disabled' : ''} value ="${item.force_value}">
+                <input type="text" placeholder="${item.text || ""}" name="${item.name}" class="optionInput ${item.disabled ? 'disabled' : ''}" ${item.disabled ? 'disabled' : ''} value ="${item.force_value || ''}">
             </div>`;
     } catch (err) {
         console.warn(err);
