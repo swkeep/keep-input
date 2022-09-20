@@ -1,4 +1,4 @@
-![menu](https://raw.githubusercontent.com/swkeep/keep-menu/master/.github/test-one.PNG)
+![menu](https://raw.githubusercontent.com/swkeep/keep-input/master/.github/test-one.PNG)
 
 This is a modified version of **[vC-input](https://github.com/vCodeScripts/vC-input)** by **[vCodeScripts](https://github.com/vCodeScripts)**
 
