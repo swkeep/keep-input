@@ -82,7 +82,7 @@ const renderTextInput = (item) => {
             return `<div class="newOption" data-required="${(item.required)}">
                 <span class="optionDesc">${item.title || capitalizeFirstLetter(item.name)} ${(item.required) ? '*' : ''}</span>
                 ${item.icon ? `<div class="emojiBox"><i class="${item.icon}"></i></div>` : ''}
-                <input type="text" placeholder="${item.text || ""}" name="${item.name}" class="optionInput">
+                <input type="text" placeholder="${item.text || ""}" name="${item.name}" class="optionInput ${item.disabled ? 'disabled' : ''}" ${item.disabled ? 'disabled' : ''} value ="${item.force_value}">
             </div>`;
     } catch (err) {
         console.warn(err);
@@ -95,7 +95,7 @@ const renderPasswordInput = (item) => {
         return `<div class="newOption" data-required="${(item.required)}">
                 <span class="optionDesc">${item.title || capitalizeFirstLetter(item.name)} ${(item.required) ? '*' : ''}</span>
                 ${item.icon ? `<div class="emojiBox"><i class="${item.icon}"></i></div>` : ''}
-                <input type="password" placeholder="${item.text || ""}" name="${item.name}" class="optionInput">
+                <input type="password" placeholder="${item.text || ""}" name="${item.name}" class="optionInput ${item.disabled ? 'disabled' : ''}" ${item.disabled ? 'disabled' : ''}>
             </div>`;
     } catch (err) {
         console.warn(err);
@@ -108,7 +108,7 @@ const renderNumberInput = (item) => {
         return `<div class="newOption" data-required="${(item.required)}">
                 <span class="optionDesc">${item.title || capitalizeFirstLetter(item.name)} ${(item.required) ? '*' : ''}</span>
                 ${item.icon ? `<div class="emojiBox"><i class="${item.icon}"></i></div>` : ''}
-                <input type="number" placeholder="${item.text || ""}" name="${item.name}" class="optionInput">
+                <input type="number" placeholder="${item.text || ""}" name="${item.name}" class="optionInput ${item.disabled ? 'disabled' : ''}" ${item.disabled ? 'disabled' : ''} value ="${item.force_value}">
             </div>`;
     } catch (err) {
         console.warn(err);
@@ -173,7 +173,7 @@ function SetupItems(items) {
 function GetSelect(options) {
     let htmlsorgu = ''
     for (const option of options) {
-        htmlsorgu = htmlsorgu + `<option value="${option.value}">${option.text || option.title}</option>`
+        htmlsorgu = htmlsorgu + `<option class="${option.disabled ? 'disabled' : ''}" ${option.disabled ? 'disabled' : ''} value="${option.value}">${option.text || option.title}</option>`
     }
     return htmlsorgu
 }

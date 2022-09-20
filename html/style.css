@@ -63,6 +63,10 @@ body {
     border-bottom: 2px solid rgba(255, 255, 255, 0.6);
 }
 
+.disabled {
+    color: #6e6e6e !important;
+}
+
 .newOption .error {
     border-bottom: 2px solid rgb(255 0 0 / 60%);
 }
