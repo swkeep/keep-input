@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.maincon {
+    display: none;
+    background: #333a44;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40vh;
+    height: fit-content;
+    border-radius: 0.5vw;
+    box-shadow: 0rem 0rem 0.05rem 0.05rem #000000;
+}
+
+.submit {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    border: none;
+    outline: none;
+    height: 4vh;
+    margin-bottom: 0.8vh;
+    margin-top: 0.8vh;
+    width: 10vh;
+    border-radius: 2px;
+    font-size: 1.5vh;
+    background-color: #78CE6A;
+    color: black;
+    transition: background-color 0.2s ease;
+}
+
+.submit:hover {
+    color: black;
+    background-color: #a9ff9b;
+    transition: background-color 0.2s ease;
+}
+
+.submit:active {
+    color: black;
+    background-color: #60ff47;
+    transition: background-color 0.2s ease;
+}
+
+.newOption {
+    width: 85%;
+    height: 9vh;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    transition: border-bottom 0.2s ease;
+    margin-top: 1vh;
+    margin-bottom: 1.5vh;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.newOption .error {
+    border-bottom: 2px solid rgb(255 0 0 / 60%);
+}
+
+.emojiBox {
+    width: 4vh;
+    height: 4vh;
+    position: absolute;
+    top: 100%;
+    transform: translateY(-100%);
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 2vh;
+}
+
+.optionDesc {
+    color: rgba(255, 255, 255, 0.8);
+    position: relative;
+    font-size: 1.4vh;
+    top: 2vh;
+}
+
+.optionInput {
+    position: absolute;
+    top: 89.5%;
+    transform: translate(0, -100%);
+    outline: none;
+    border: none;
+    background: none;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    left: 10%;
+    width: 87%;
+}
+
+.optionSelect {
+    outline: none;
+    border: none;
+    color: white;
+    background: none;
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    left: 10%;
+    width: 87%;
+    font-size: 1.6vh;
+    top: 89.5%;
+    transform: translate(0, -100%);
+}
+
+select option {
+    margin-top: 800px;
+    margin: 40px;
+    background: #243246;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+    outline: none;
+}
+
+
+/* swkeep */
+
+.error {
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+    position: relative;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%);
+    height: 4vh;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+    width: 30vh;
+    color: rgba(223, 76, 76, 0.842);
+    font-size: 2vh;
+    display: none;
+}
