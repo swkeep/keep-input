@@ -43,13 +43,11 @@ $(document).on('click', '.submit', function() {
         }
 
         for (const iterator of checkbox[0].childNodes) {
-
             if (iterator.childNodes.length > 0) {
-                if (!object[iterator.childNodes[0].name]) {
-                    object[iterator.childNodes[0].name] = {}
-                }
+                let name = iterator.childNodes[0].name
                 let value = iterator.childNodes[0].value
-                object[iterator.childNodes[0].name][value] = iterator.childNodes[0].checked
+                if (!object[name]) object[name] = {}
+                object[name][value] = iterator.childNodes[0].checked
             }
         }
 
