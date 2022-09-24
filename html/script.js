@@ -35,8 +35,8 @@ $(document).on('click', '.submit', function() {
 
         for (const input of selects) object[input.name] = input.value
 
-        if (radiobox[0]) {
-            for (const iterator of radiobox[0].childNodes) {
+        for (const radio of radiobox) {
+            for (const iterator of radio.childNodes) {
                 if (iterator.childNodes.length > 0 && (iterator.childNodes[0].checked)) {
                     object[iterator.childNodes[0].name] = iterator.childNodes[0].value
                     break
@@ -44,8 +44,8 @@ $(document).on('click', '.submit', function() {
             }
         }
 
-        if (checkbox[0]) {
-            for (const iterator of checkbox[0].childNodes) {
+        for (const check of checkbox) {
+            for (const iterator of check.childNodes) {
                 if (iterator.childNodes.length > 0) {
                     let name = iterator.childNodes[0].name
                     let value = iterator.childNodes[0].value
