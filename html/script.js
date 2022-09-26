@@ -16,7 +16,7 @@ document.onkeydown = function(data) {
     }
 }
 
-$(document).on('click', '.submit', function() {
+const submit = () => {
     let cb = CheckIfRequired()
     if (cb === true) {
         let object = {}
@@ -60,6 +60,16 @@ $(document).on('click', '.submit', function() {
     } else {
         animation(cb)
     }
+}
+
+document.addEventListener("keyup", function(event) {
+    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+        submit()
+    }
+});
+
+$(document).on('click', '.submit', function() {
+    submit()
 })
 
 function animation(element) {
