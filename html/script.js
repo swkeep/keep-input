@@ -9,8 +9,8 @@ addEventListener('message', function(event) {
     }
 })
 
-document.onkeydown = function(data) {
-    if (data.which == 27) {
+document.onkeydown = function(event) {
+    if (event.code == 'Escape') {
         $('.maincon').fadeOut(150, 'swing');
         $.post(`https://${resource_name}/close`)
     }
