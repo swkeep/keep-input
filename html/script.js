@@ -138,7 +138,7 @@ const renderNumberInput = (item) => {
         return `<div class="newOption" data-required="${(item.required)}">
                 <span class="optionDesc">${item.title || capitalizeFirstLetter(item.name)} ${(item.required) ? '*' : ''}</span>
                 ${item.icon ? `<div class="emojiBox"><i class="${item.icon}"></i></div>` : ''}
-                <input type="number" placeholder="${item.text || ""}" name="${item.name}" class="optionInput ${item.disabled ? 'disabled' : ''}" ${item.disabled ? 'disabled' : ''} value ="${item.force_value}">
+                <input type="number" placeholder="${item.text || ""}" name="${item.name}" class="optionInput ${item.disabled ? 'disabled' : ''}" ${item.disabled ? 'disabled' : ''} value ="${item.force_value || 0}">
             </div>`;
     } catch (err) {
         console.warn(err);
